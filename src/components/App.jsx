@@ -1,16 +1,27 @@
-export const App = () => {
+import { Route, Routes, Navigate } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import Background from "../images/background.png";
+import theme from "../items/theme/theme";
+import SharedLayout from "../components/SharedLayout/SharedLayout";
+import MainPage from "../pages/MainPage/MainPage";
+import CreateEventPage from "../pages/CreateEventPage/CreateEventPage";
+import EventDetailPage from "../pages/EventDetailPage/EventDetailPage";
+
+function App() {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <ThemeProvider theme={theme}>
+      <Background>
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<MainPage />} />
+            <Route path="/create/" element={<CreateEventPage />} />
+            <Route path="/event/:id" element={<EventDetailPage />} />
+            <Route path="*" element={<Navigate to={"/"} />} />
+          </Route>
+        </Routes>
+      </Background>
+    </ThemeProvider>
   );
-};
+}
+
+export default App;
