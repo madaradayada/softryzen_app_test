@@ -1,15 +1,12 @@
-import useEventStore from "../../services/eventStore";
-import { useEffect } from "react";
+import useEventStore from '../../services/eventStore';
+import { EventListWrapper } from './EventList.styled';
+import { EventCard } from '../EventCard/EventCard';
 
-const EventList = () => {
-  const events = useEventStore((state) => state.items);
-  const isLoading = useEventStore((state) => state.isLoading);
-  const error = useEventStore((state) => state.error);
-  const fetchEvents = useEventStore((state) => state.fetchEvents);
+const EventList = ({ events }) => {
+  const isLoading = useEventStore(state => state.isLoading);
+  const error = useEventStore(state => state.error);
 
-  useEffect(() => {
-    fetchEvents();
-  }, [fetchEvents]);
+  console.log(events);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -20,11 +17,13 @@ const EventList = () => {
   }
 
   return (
-    <div>
-      {events.map((event) => (
-        <div key={event.id}>{event.title}</div>
-      ))}
-    </div>
+    <EventListWrapper>
+      {events.length === 0 ? (
+        <div>No events found.</div>
+      ) : (
+        events.map(event => <EventCard key={event.id} event={event} />)
+      )}
+    </EventListWrapper>
   );
 };
 

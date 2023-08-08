@@ -1,6 +1,7 @@
+// import { lazy } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import Background from "../images/background.png";
+import Background from "../items/Background/Background.styled";
 import theme from "../items/theme/theme";
 import SharedLayout from "../components/SharedLayout/SharedLayout";
 import MainPage from "../pages/MainPage/MainPage";
@@ -15,7 +16,7 @@ function App() {
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<MainPage />} />
             <Route path="/create/" element={<CreateEventPage />} />
-            <Route path="/event/:id" element={<EventDetailPage />} />
+            <Route path="/event/:eventId" element={<EventDetailPage />} />
             <Route path="*" element={<Navigate to={"/"} />} />
           </Route>
         </Routes>
