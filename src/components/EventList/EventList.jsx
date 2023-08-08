@@ -1,15 +1,17 @@
-import useEventStore from '../../services/eventStore';
-import { EventListWrapper } from './EventList.styled';
-import { EventCard } from '../EventCard/EventCard';
+/* eslint-disable react/prop-types */
+import useEventStore from "../../services/eventStore";
+import { EventListWrapper } from "./EventList.styled";
+import { EventCard } from "../EventCard/EventCard";
+import Loader from "../Loader/Loader";
 
 const EventList = ({ events }) => {
-  const isLoading = useEventStore(state => state.isLoading);
-  const error = useEventStore(state => state.error);
+  const isLoading = useEventStore((state) => state.isLoading);
+  const error = useEventStore((state) => state.error);
 
   console.log(events);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (error) {
@@ -21,7 +23,7 @@ const EventList = ({ events }) => {
       {events.length === 0 ? (
         <div>No events found.</div>
       ) : (
-        events.map(event => <EventCard key={event.id} event={event} />)
+        events.map((event) => <EventCard key={event.id} event={event} />)
       )}
     </EventListWrapper>
   );

@@ -1,7 +1,7 @@
 // import { NavLink } from "react-router-dom";
 import EventList from "../../components/EventList/EventList";
 import { MainSection, MainFilterWrapper, MainTitle } from "./MainPage.styled";
-import AddEventButton from "../../components/AddEventButton/AddEventButton";
+import EventButton from "../../components/EventButton/EventButton";
 import CategoryButton from "../../components/CategoryButton/CategoryButton";
 import SortButton from "../../components/SortButton/SortButton";
 import { useEffect, useState } from "react";
@@ -41,7 +41,7 @@ const MainPage = () => {
       <MainFilterWrapper>
         <CategoryButton handleFilterCategory={handleFilterCategory} />
         <SortButton />
-        <AddEventButton />
+        <EventButton />
       </MainFilterWrapper>
       <MainTitle>My events</MainTitle>
       <EventList events={filteredEvents} />
